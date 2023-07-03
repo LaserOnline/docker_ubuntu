@@ -5,9 +5,10 @@ WORKDIR /app
 ENV TZ=Asia/Bangkok
 
 RUN apt-get update && apt-get upgrade -y \
-    && mkdir /share
+    && mkdir /share \
+    && mkdir /disk
 
-COPY ./share /app/share
+COPY ./disk /app/disk
 
 
 CMD ["/bin/bash"]

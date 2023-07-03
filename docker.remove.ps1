@@ -1,9 +1,31 @@
 
 $container = "ubuntu-dev-test"
 
-docker stop $container
+function DockerStop {
+    docker stop $container
+}
 
-docker rm --force $container
-docker rmi --force $container
+function DockerRemoveContainer {
+    docker rm --force $container
+    docker rmi --force $container
+}
 
-# docker builder prune -y
+
+function DockerBuilderPrune {
+    docker builder prune --force
+}
+
+
+function DockerRemove {
+    $submit = Read-Host "Use Docker Prune Send = y "
+
+    if ($submit -eq "y") {
+        DockerRemoveContainer
+        DockerBuilderPrune
+    } elseif ($submit -ne "y" -or $submit -eq $submit) {
+        DockerRemoveContainer
+    }
+    
+}
+
+DockerRemove
